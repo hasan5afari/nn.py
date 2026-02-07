@@ -1,5 +1,6 @@
 # Implementation of a single layer consisting of 3 neurons
 
+
 def main() -> None:
     inputs: list[float] = [1, 2, 3, 2.5]
     weights: list[list[float]] = [
@@ -15,6 +16,7 @@ def main() -> None:
         layer_outputs.append(sum([i * w for i, w in zip(inputs, neuron_weights)]) + neuron_bias)
 
     print(layer_outputs)
+
 
 if __name__ == '__main__':
     main()
