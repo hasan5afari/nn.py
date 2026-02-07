@@ -9,13 +9,12 @@ def main() -> None:
     ]
     biases: list[float] = [2, 3, 0.5]
 
-    output: list[float] = [
-        sum([i * w for i, w in zip(inputs, weights[0])]) + biases[0],
-        sum([i * w for i, w in zip(inputs, weights[1])]) + biases[1],
-        sum([i * w for i, w in zip(inputs, weights[2])]) + biases[2],
-    ]
+    layer_outputs: list[float] = []
 
-    print(output)
+    for neuron_weights, neuron_bias in zip(weights, biases):
+        layer_outputs.append(sum([i * w for i, w in zip(inputs, neuron_weights)]) + neuron_bias)
+
+    print(layer_outputs)
 
 if __name__ == '__main__':
     main()
