@@ -1,10 +1,6 @@
 import numpy as np
 
 
-def initialize(random_seed: int = 42) -> None:
-    np.random.seed(random_seed)
-
-
 def generate_vertical_dataset(
     classes: int = 2, data_per_class: int = 100
 ) -> tuple[np.ndarray, np.ndarray]:
