@@ -1,11 +1,15 @@
 # Implementation of a single layer consisting of 3 neurons
 
 
-def dimension(matrix: list[list[float]]) -> tuple[int, int]:
+Matrix = list[list[float]]
+Vector = list[float]
+
+
+def dimension(matrix: Matrix) -> tuple[int, int]:
     return len(matrix), len(matrix[0])
 
 
-def transpose(matrix: list[list[float]]) -> list[list[float]]:
+def transpose(matrix: Matrix) -> Matrix:
     r, c = dimension(matrix)
     transposed_matrix = [[0 for _ in range(r)] for _ in range(c)]
 
@@ -16,7 +20,7 @@ def transpose(matrix: list[list[float]]) -> list[list[float]]:
     return transposed_matrix
 
 
-def dot(matrix_a: list[list[float]], matrix_b: list[list[float]]) -> list[list[float]]:
+def dot(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     r_a, c_a = dimension(matrix_a)
     r_b, c_b = dimension(matrix_b)
 
@@ -32,7 +36,7 @@ def dot(matrix_a: list[list[float]], matrix_b: list[list[float]]) -> list[list[f
     return dot_product
 
 
-def add_vector(matrix: list[list[float]], vector: list[float]) -> list[list[float]]:
+def add_vector(matrix: Matrix, vector: Vector) -> Matrix:
     r_m, c_m = dimension(matrix)
     v_c = len(vector)
 
@@ -48,15 +52,21 @@ def add_vector(matrix: list[list[float]], vector: list[float]) -> list[list[floa
 
 
 def main() -> None:
-    inputs: list[list[float]] = [[1, 2, 3, 2.5], [2, 5, -1, 2], [-1.5, 2.7, 3.3, -0.8]]
-    weights: list[list[float]] = [
+    inputs: Matrix = [[1, 2, 3, 2.5], [2, 5, -1, 2], [-1.5, 2.7, 3.3, -0.8]]
+    hidden_layer_weights: Matrix = [
         [0.2, 0.8, -0.5, 1.0],
         [0.5, -0.91, 0.26, -0.5],
         [-0.26, -0.27, 0.17, 0.87],
     ]
-    biases: list[float] = [2, 3, 0.5]
+    hidden_layer_biases: Vector = [2, 3, 0.5]
 
-    print(add_vector(dot(inputs, transpose(weights)), biases))
+    output_layer_weights: Matrix = [[0.1, -0.14, 0.5], [-0.5, 0.12, -0.33], [-0.44, 0.73, -0.13]]
+    output_layer_biases: Vector = [-1, 2, -0.5]
+
+    hidden_layer_output: Matrix = add_vector(dot(inputs, transpose(hidden_layer_weights)), hidden_layer_biases)
+    output_layer_output: Matrix = add_vector(dot(hidden_layer_output, transpose(output_layer_weights)), output_layer_biases)
+
+    print(output_layer_output)
 
 
 if __name__ == "__main__":
