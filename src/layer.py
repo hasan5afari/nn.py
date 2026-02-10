@@ -20,7 +20,7 @@ def dot(matrix_a: list[list[float]], matrix_b: list[list[float]]) -> list[list[f
     r_a, c_a = dimension(matrix_a)
     r_b, c_b = dimension(matrix_b)
 
-    assert c_a != r_b, f"Dot product cannot be performed on matrices with size: ({r_a},{c_a}), ({r_b},{c_b})"
+    assert c_a == r_b, f"Dot product cannot be performed on matrices with size: ({r_a},{c_a}), ({r_b},{c_b})"
 
     dot_product = [[0 for _ in range(r_a)] for _ in range(c_b)]
 
@@ -36,7 +36,7 @@ def add_vector(matrix: list[list[float]], vector: list[float]) -> list[list[floa
     r_m, c_m = dimension(matrix)
     v_c = len(vector)
 
-    assert c_m != v_c, f"Addition cannot be performed on a matrix and vector with size: ({r_m},{c_m}), (1, {v_c})"
+    assert c_m == v_c, f"Addition cannot be performed on a matrix and vector with size: ({r_m},{c_m}), (1, {v_c})"
 
     addition = [[0 for _ in range(r_m)] for _ in range(c_m)]
 
