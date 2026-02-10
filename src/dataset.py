@@ -12,7 +12,7 @@ def generate_vertical_dataset(
     y = np.zeros(classes * data_per_class, dtype="uint8")
 
     for cls in range(classes):
-        ix = range(classes * data_per_class, (cls + 1) * data_per_class)
+        ix = range(cls * data_per_class, (cls + 1) * data_per_class)
         X[ix] = np.c_[
             np.random.randn(data_per_class) * 0.1 + (cls / 3),
             np.random.randn(data_per_class) * 0.1 + 0.5,
@@ -29,7 +29,7 @@ def generate_spiral_dataset(
     y = np.zeros(classes * data_per_class, dtype="uint8")
 
     for cls in range(classes):
-        ix = range(classes * data_per_class, (cls + 1) * data_per_class)
+        ix = range(cls * data_per_class, (cls + 1) * data_per_class)
         r = np.linspace(0.0, 1, data_per_class)
         t = (
             np.linspace(cls * 4, (cls + 1) * 4, data_per_class)
