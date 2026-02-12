@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 from dataset import (
     generate_sin_dataset,
@@ -6,6 +7,7 @@ from dataset import (
     generate_vertical_dataset
 )
 from layers.dense_layer import DenseLayer
+from activation_functions.relu import ReLU
 
 
 def main() -> None:
@@ -16,7 +18,10 @@ def main() -> None:
     dl = DenseLayer(2, 3)
     dl.forward(X)
 
-    print(dl.get_output()[:5])
+    print(dl.get_output()[:3])
+
+    relu = ReLU()
+    print(relu.forward(dl.get_output())[:3])
 
 
 if __name__ == '__main__':
