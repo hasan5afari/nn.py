@@ -9,6 +9,9 @@ from dataset import (
 from layers.dense_layer import DenseLayer
 from activation_functions.relu import ReLU
 from activation_functions.softmax import Softmax
+
+from metrics.accuracy import Accuracy
+
 from loss_functions.categorical_cross_entropy import CategoricalCrossEntropy
 
 
@@ -19,6 +22,9 @@ def main() -> None:
 
     relu = ReLU()
     softmax = Softmax()
+
+    accuracy_metric = Accuracy()
+
     categorical_cross_entropy = CategoricalCrossEntropy()
 
     hidden_layer = DenseLayer(2, 3)
@@ -31,9 +37,11 @@ def main() -> None:
     output_layer_output = softmax.forward(output_layer.get_output())
 
     loss = categorical_cross_entropy.calculate(output_layer_output, y)
+    accuracy = accuracy_metric.calculate(output_layer_output, y)
 
     print(output_layer_output[:5])
     print(f"loss: {loss}")
+    print(f"accuracy: {accuracy}")
 
 
 if __name__ == "__main__":
